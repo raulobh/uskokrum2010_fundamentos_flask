@@ -4,10 +4,10 @@ from flask_mysqldb import MySQL
 app = Flask(__name__)
 
 # Conexión MySQL
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '123456'
-app.config['MYSQL_DB'] = 'base_datos'
+app.config['MYSQL_HOST'] = 'database'
+app.config['MYSQL_USER'] = 'wordpress'
+app.config['MYSQL_PASSWORD'] = 'wordpress'
+app.config['MYSQL_DB'] = 'wordpress'
 
 conexion = MySQL(app)
 
@@ -59,10 +59,10 @@ def listar_cursos():
     data = {}
     try:
         cursor = conexion.connection.cursor()
-        sql = "SELECT codigo, nombre, creditos FROM curso ORDER BY nombre ASC"
+        sql = "SELECT Asociacion, Isla FROM DATOS_EMPRESA ORDER BY Asociacion ASC"
         cursor.execute(sql)
         cursos = cursor.fetchall()
-        # print(cursos)
+        print(cursos)
         data['cursos'] = cursos
         data['mensaje'] = 'Exito'
     except Exception as ex:
